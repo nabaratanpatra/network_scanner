@@ -61,21 +61,27 @@ echo "=================================================="
 
 for i in {1..254}
 do
-	ping -c 1 $net.$ip | grep "64 bytes" | cut -d " " -f 4 | tr -d ":" >> hosts.txt &
+	a=$net.$i
+	ping -c 1 $a | grep "64 bytes" | cut -d " " -f 4 | tr -d ":" >> hosts.txt &
 done
 
-echo "Discovered hosts in local network are "
+
+
+echo "completed dicovering hosts in local network"
 cat hosts.txt |sort > sorted_h.txt
+
+rm hosts.txt
 
 echo "Do you want to discover open ports ? y/N"
 read choice
-if [ $choice =="y" ]; then
-	nmap -iL sorted_h.txt | grep -v "Nmap"
-elif [ $choice =="N" ]; then
+if [ $choice == "y" ]; then
+	nmap -iL sorted_h.txt | grep -v "Nmap" >> sorted_h.txt
+	cat sorted_h.txt
+elif [ $choice == "N" ]; then
 	echo " "
+	cat sorted_h.txt
 else
 	echo "Please enter a valid choice"
 fi
 
 figlet "thankyou for choosing us"
-

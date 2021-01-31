@@ -1,4 +1,8 @@
-# network_scanner
+# network_scanner  
+
+![alt text](https://github.com/nabaratanpatra/network_scanner/blob/main/pic1.jfif?raw=true)
+
+
 this is a faster and easy to use network scanner, using bash scripting and python
  
  This project has been updated on 1st dec 2020 . 
